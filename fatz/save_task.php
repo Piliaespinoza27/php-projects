@@ -15,8 +15,10 @@
             die("Query failed");
         }
 
-        echo 'Registro Agregado';
-       
+        $_SESSION['message'] = 'Task Saved  succesfully';
+        $_SESSION['message_type'] = 'success';
+
+         header("location: index.php");       
        
     }
 ?>
