@@ -33,27 +33,31 @@
                             <div class="form-group col-md-12">
 
                                 <?php
-                                $valor = '';
+                                $IdRol = '';
+                                $IdEmpleados = '';
+                                $NombreUsuario = '';
+                                $Clave = '';
                                 $id = $_GET['idEditar'];
                                 $query = sprintf("select * from usuarios WHERE id=$id");
                                 $result = mysqli_query($conn, $query);
                                 while ($row = mysqli_fetch_array($result)) {
-                                    $valor = $row['IdRol'];
-                                    $valor = $row['IdEmpleados'];
-                                    $valor = $row['NombreUsuario'];
-                                    $valor = $row['Clave'];
+                                    $IdRol = $row['IdRol'];
+                                    $IdEmpleados = $row['IdEmpleados'];
+                                    $NombreUsuario = $row['NombreUsuario'];
+                                    $Clave = $row['Clave'];
                                 }
                                 ?>
 
                                     <input type="text" name="Id" class="form-control" value="<?= $id ?>" hidden>
-                                    <input type="text" name="IdRol" class="form-control" placeholder="ID ROL" value="<?= $valor ?>" required>
-                                    <input type="text" name="IdEmpleados" class="form-control" placeholder="ID EMPLEADO" value="<?= $valor ?>" required>
-                                    <input type="text" name="NombreUsuario" class="form-control" placeholder="NOMBRE USUARIO" value="<?= $valor ?>" required>
-                                    <input type="text" name="Clave" class="form-control" placeholder="CLAVE" value="<?= $valor ?>" required>
+                                    <input type="text" name="IdRol" class="form-control" placeholder="ID ROL" value="<?= $IdRol ?>" required>
+                                    <input type="text" name="IdEmpleados" class="form-control" placeholder="ID EMPLEADO" value="<?= $IdEmpleados ?>" required>
+                                    <input type="text" name="NombreUsuario" class="form-control" placeholder="NOMBRE USUARIO" value="<?= $NombreUsuario ?>" required>
+                                    <input type="text" name="Clave" class="form-control" placeholder="Clave USUARIO" value="<?= $Clave ?>" required>
+
 
                             </div>
                             <div class="form-group col-md-12">
-                                <button type="submit" name="update_usuario" class="btn btn-primary btn-block">Editar</button>
+                                <button type="submit" name="update_usuario" class="btn btn-success btn-block">Editar</button>
                                 <a href="index.php" class="btn btn-danger btn-block">Cancelar</a>
                             </div>
                         </form>
@@ -73,13 +77,12 @@
                                 <th>Id Rol</th>
                                 <th>Id Empleados</th>
                                 <th>Nombre Usuario</th>
-                                <th>Clave</th>
                                 <th>Fecha de creación</th>
                                 </tr>
 
                             </thead>
                             <tbody>
-                                <?php
+                            <?php
                                 $query = sprintf("select * from usuarios WHERE id=$id");
                                 $result = mysqli_query($conn, $query);
                                 mysqli_close($conn);
@@ -91,7 +94,6 @@
                                         <td><?= $row['IdRol'] ?></td>
                                         <td><?= $row['IdEmpleados'] ?></td>
                                         <td><?= $row['NombreUsuario'] ?></td>
-                                        <td><?= $row['Clave'] ?></td>
                                         <td><?= $row['FechaRegistro'] ?></td>
                                     </tr>
 
@@ -100,7 +102,7 @@
                                 ?>
 
                                 <tr>
-                                    <th colspan="4" class="text-center">No hay registros... <?php echo $result ?> </th>
+                                    <th colspan="5" class="text-center">No hay registros... <?php echo $result ?> </th>
                                 </tr>
                             </tbody>
                         </table>

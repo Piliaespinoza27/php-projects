@@ -22,16 +22,16 @@
 
 
         <?php if (isset($_SESSION['message'])) { ?>
-            <div class="col-md-12">
-                <div class="alert alert-<?= $_SESSION["type"] ?> alert-dismissible fade show" empleado="alert">
-                    <strong>
-                        <?= $_SESSION["message"] ?>
-                    </strong>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+        <div class="col-md-12">
+            <div class="alert alert-<?= $_SESSION[" message_type"] ?> alert-dismissible fade show" empleados="alert">
+                <strong>
+                    <?= $_SESSION["message"] ?>
+                </strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
+        </div>
         <?php session_unset();
         } ?>
 
@@ -43,13 +43,28 @@
                 <div class="card-body">
                     <form class="row" action="../../controllers/empleadoController.php" method="POST">
                         <div class="form-group col-md-12">
-                            <input type="text" name="Nombres" class="form-control" placeholder="Nombres de EMPLEADO" required>
-                            <input type="text" name="Apellidos" class="form-control" placeholder="Apellidos de EMPLEADO" required>
-                            <input type="text" name="Correo" class="form-control" placeholder="Correo de EMPLEADO" required>
-                            <input type="text" name="Telefono" class="form-control" placeholder="Telefono de EMPLEADO" required>
+                            <input type="text" name="Nombres" class="form-control" placeholder="Nombres de EMPLEADO"
+                                require>
                         </div>
                         <div class="form-group col-md-12">
-                            <button type="submit" name="save_empleado" class="btn btn-primary btn-block">Agregar</button>
+                            <input type="text" name="Apellidos" class="form-control" placeholder="Apellidos de EMPLEADO"
+                                require>
+                        </div>
+                        <div class="form-group col-md-12">
+                              
+                            <input type="text" name="Correo" class="form-control" placeholder="Correo de EMPLEADO"
+                                require>
+                        </div>
+               
+                        <div class="form-group col-md-12">
+                            
+                          
+                            <input type="text" name="Telefono" class="form-control" placeholder="Telefono de EMPLEADO"
+                                require>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <button type="submit" name="save_empleado"
+                                class="btn btn-success btn-block">Agregar</button>
                         </div>
                     </form>
                 </div>
@@ -64,44 +79,58 @@
                     <table class="table table-bordered table-sm">
                         <thead>
                             <tr>
-                                    <th>Id</th>
-                                    <th>Nombres Empleado</th>
-                                    <th>Apellidos Empleado</th>
-                                    <th>Correo Empleado</th>
-                                    <th>Telefono Empleado</th>
-                                    <th>Fecha de creación</th>
-                                    <th>Opciones</th>
+                                <th>Id</th>
+                                <th>Nombres Empleado</th>
+                                <th>Apellidos Empleado</th>
+                                <th>Correo Empleado</th>
+                                <th>Telefono Empleado</th>
+                                <th>Fecha de creación</th>
+                                <th>Opciones</th>
                             </tr>
 
                         </thead>
                         <tbody>
                             <?php
-                            $query = sprintf("select * from empleados");
-                            $result = mysqli_query($conn, $query);
-                            mysqli_close($conn);
-                            while ($row = mysqli_fetch_array($result)) {
+                            $query = "select * from empleados";
+                            $result_empleados = mysqli_query($conn, $query);
+                            while ($row = mysqli_fetch_array($result_empleados)) {
                             ?>
 
-                                <tr>
-                                    <td><?= $row['Id'] ?></td>
-                                    <td><?= $row['Nombres'] ?></td>
-                                    <td><?= $row['Apellidos'] ?></td>
-                                    <td><?= $row['Correo'] ?></td>
-                                    <td><?= $row['Telefono'] ?></td>
-                                    <td><?= $row['FechaRegistro'] ?></td>
-                                    <td>
-                                        <a href="update.php?idEditar=<?=$row['Id']?>">Editar</a>
-                                        -
-                                        <a href="../../controllers/empleadoController.php?id=<?=$row['Id']?>">Eliminar</a>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td>
+                                    <?= $row['Id'] ?>
+                                </td>
+                                <td>
+                                    <?= $row['Nombres'] ?>
+                                </td>
+                                <td>
+                                    <?= $row['Apellidos'] ?>
+                                </td>
+                                <td>
+                                    <?= $row['Correo'] ?>
+                                </td>
+                                <td>
+                                    <?= $row['Telefono'] ?>
+                                </td>
+                                <td>
+                                    <?= $row['FechaRegistro'] ?>
+                                </td>
+                                <td>**********</td>
+                                <td>
+                                    <a href="update.php?idEditar=<?=$row['Id']?>">Editar</a>
+                                    -
+                                    <a href="../../controllers/empleadoController.php?id=<?=$row['Id']?>">Eliminar</a>
+                                </td>
+                            </tr>
 
                             <?php
                             }
                             ?>
 
                             <tr>
-                                <th colspan="4" class="text-center">No hay registros... <?php echo $result?> </th>
+                                <th colspan="8" class="text-center">No hay registros...
+                                    <?php echo $result?>
+                                </th>
                             </tr>
                         </tbody>
                     </table>
