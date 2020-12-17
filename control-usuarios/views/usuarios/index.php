@@ -42,13 +42,31 @@
                 </div>
                 <div class="card-body">
                     <form class="row" action="../../controllers/usuarioController.php" method="POST">
+                    <div class="form-group col-md-12">
+                            <select name="IdRol" class="form-control">
+                            <?php
+                                    $query = sprintf("select * from roles");
+                                    $result_usuario = mysqli_query($conn, $query);
+                                
+                                    while ($row = mysqli_fetch_array($result_usuario)) {
+                                    ?>
+
+                                    
+                                        <option value="<?= $row['Id']?>"><?= $row['Id'] ?> - <?= $row['NombreRol'] ?></option>
+                                  
+                                       
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
+                        </div>
                         <div class="form-group col-md-12">
                             <select name="IdEmpleado" class="form-control">
                                 <?php
                                 $query = sprintf("select * from empleados");
-                                $result = mysqli_query($conn, $query);
-                               
-                                while ($row = mysqli_fetch_array($result)) {
+                                $result_usuario = mysqli_query($conn, $query);
+
+                                while ($row = mysqli_fetch_array($result_usuario)) {
                                 ?>
 
                                 
@@ -67,26 +85,9 @@
                         <div class="form-group col-md-12">
                             <input type="text" name="Clave" class="form-control" placeholder="Clave" require>
                         </div>
+                       
                         <div class="form-group col-md-12">
-                            <select name="IdRol" class="form-control">
-                            <?php
-                                    $query = sprintf("select * from roles");
-                                    $result = mysqli_query($conn, $query);
-                                
-                                    while ($row = mysqli_fetch_array($result)) {
-                                    ?>
-
-                                    
-                                        <option value="<?= $row['Id']?>"><?= $row['Id'] ?> - <?= $row['NombreRol'] ?></option>
-                                  
-                                       
-                                    <?php
-                                    }
-                                    ?>
-                                </select>
-                        </div>
-                        <div class="form-group col-md-12">
-                            <button type="submit" name="save_usuario" class="btn btn-success btn-block">Agregar</button>
+                            <button type="submit" name="save_usuario" class="btn btn-primary btn-block">Agregar</button>
                         </div>
                     </form>
                 </div>
@@ -114,9 +115,8 @@
                         <tbody>
                              <?php
                             $query = sprintf("select * from usuarios");
-                            $result = mysqli_query($conn, $query);
-                            mysqli_close($conn);
-                            while ($row = mysqli_fetch_array($result)) {
+                            $result_usuario = mysqli_query($conn, $query);
+                            while ($row = mysqli_fetch_array($result_usuario)) {
                             ?>
 
                                 <tr>
