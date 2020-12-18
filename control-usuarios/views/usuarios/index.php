@@ -46,9 +46,9 @@
                             <select name="IdRol" class="form-control">
                             <?php
                                     $query = sprintf("select * from roles");
-                                    $result_usuario = mysqli_query($conn, $query);
+                                    $result_usuarios = mysqli_query($conn, $query);
                                 
-                                    while ($row = mysqli_fetch_array($result_usuario)) {
+                                    while ($row = mysqli_fetch_array($result_usuarios)) {
                                     ?>
 
                                     
@@ -64,9 +64,9 @@
                             <select name="IdEmpleado" class="form-control">
                                 <?php
                                 $query = sprintf("select * from empleados");
-                                $result_usuario = mysqli_query($conn, $query);
+                                $result_usuarios = mysqli_query($conn, $query);
 
-                                while ($row = mysqli_fetch_array($result_usuario)) {
+                                while ($row = mysqli_fetch_array($result_usuarios)) {
                                 ?>
 
                                 
@@ -87,7 +87,7 @@
                         </div>
                        
                         <div class="form-group col-md-12">
-                            <button type="submit" name="save_usuario" class="btn btn-primary btn-block">Agregar</button>
+                            <button type="submit" name="save_usuario" class="btn btn-success btn-block">Agregar</button>
                         </div>
                     </form>
                 </div>
@@ -115,8 +115,8 @@
                         <tbody>
                              <?php
                             $query = sprintf("select * from usuarios");
-                            $result_usuario = mysqli_query($conn, $query);
-                            while ($row = mysqli_fetch_array($result_usuario)) {
+                            $result_usuarios = mysqli_query($conn, $query);
+                            while ($row = mysqli_fetch_array($result_usuarios)) {
                             ?>
 
                                 <tr>

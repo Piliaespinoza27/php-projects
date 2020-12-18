@@ -2,14 +2,14 @@
 include("../models/DBCommon.php");
 if (isset($_POST['save_usuario'])) {
     $IdRol = $_POST['IdRol'];
-    $IdEmpleado = $_POST['IdEmpleado'];
+    $IdEmpleados = $_POST['IdEmpleados'];
     $NombreUsuario = $_POST['NombreUsuario'];
     $Clave =$_POST['Clave'];  
     echo $query;
-    $query = sprintf("INSERT INTO usuarios (IdRol, IdEmpleado, NombreUsuario, Clave) VALUES('$IdRol', '$IdEmpleado', '$NombreUsuario', '$Clave')");
-    $result_usuario = mysqli_query($conn, $query);
+$query = sprintf("INSERT INTO usuarios (IdRol, IdEmpleados, NombreUsuario, Clave) VALUES('$IdRol', '$IdEmpleados', '$NombreUsuario', '$Clave')");
+    $result_usuarios = mysqli_query($conn, $query);
     mysqli_close($conn);
-    if ($result_usuario) {
+    if ($result_usuarios) {
         die("Query failed");
     }    
     $_SESSION["message"] = 'Registro guardado';
